@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import ipdb
 import os
 
+"""This script is for stablizing any video file."""
+
 
 def transform_builder(prev_frame, cap, frame_n):
     cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
@@ -89,7 +91,8 @@ if __name__ == "__main__":
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = int(cap.get(cv2.CAP_PROP_FPS))
-    out_vid = cv2.VideoWriter("results/stabilized_video.avi", cv2.VideoWriter_fourcc("M", "j", "P", "G"), fps, (width * 2, height))
+    out_vid = cv2.VideoWriter("results/stabilized_video.avi", cv2.VideoWriter_fourcc("M", "j", "P", "G"), fps,
+                              (width * 2, height))
     transform = np.zeros((frame_n - 1, 3))
     stat, prev_frame = cap.read()
     prev_frame_gray = cv2.cvtColor(prev_frame, cv2.COLOR_BGR2GRAY)
