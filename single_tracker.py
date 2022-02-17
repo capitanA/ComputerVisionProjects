@@ -24,12 +24,12 @@ RED = (0, 0, 255)
 BLUE = (255, 128, 0)
 
 
-def doTrack(frame):
+def doTrack(frame,tracking_object):
     fps = cap.get(cv2.CAP_PROP_FPS)
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 
-    out_cap = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc("M", "J", "P", "G"), fps, (width, height))
+    out_cap = cv2.VideoWriter("results/"+tracking_object+".avi", cv2.VideoWriter_fourcc("M", "J", "P", "G"), fps, (width, height))
     if algorithm == 'BOOSTING':
         tracker = cv2.TrackerBoosting_create()
     elif algorithm == 'MIL':
@@ -106,4 +106,4 @@ if __name__ == "__main__":
     if not success:
         print("Cannot read the video file!")
 
-    doTrack(frame)
+    doTrack(frame,tracking_object)
